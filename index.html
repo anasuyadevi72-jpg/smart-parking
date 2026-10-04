@@ -8,94 +8,257 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="app">
+<!-- ================= AUTH ================= -->
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+<div id="authScreen" class="auth-screen">
 
-        <div class="brand">
-            <div class="brand-icon">P</div>
+    <div class="auth-background"></div>
+
+    <div class="auth-card">
+
+        <div class="auth-brand">
+            <div class="brand-mark">P</div>
+
             <div>
                 <h1>ParkHash</h1>
-                <span>Smart Parking</span>
+                <span>Smart Parking System</span>
             </div>
         </div>
 
-        <div class="system-status">
-            <span class="status-dot"></span>
-            System Online
+        <div class="auth-tabs">
+            <button id="loginTab" class="auth-tab active">Login</button>
+            <button id="signupTab" class="auth-tab">Create Account</button>
         </div>
 
-        <nav>
+        <!-- LOGIN -->
+
+        <form id="loginForm" class="auth-form">
+
+            <div class="form-title">
+                <h2>Welcome back</h2>
+                <p>Sign in to manage your parking system.</p>
+            </div>
+
+            <label>Email</label>
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="you@example.com"
+                required
+            >
+
+            <label>Password</label>
+
+            <div class="password-field">
+                <input
+                    id="loginPassword"
+                    type="password"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <button type="button" class="password-toggle" data-target="loginPassword">
+                    Show
+                </button>
+            </div>
+
+            <label class="check-row">
+                <input id="rememberMe" type="checkbox" checked>
+                <span>Keep me signed in</span>
+            </label>
+
+            <button class="primary-btn full-btn" type="submit">
+                Sign In
+            </button>
+
+            <p id="loginMessage" class="auth-message"></p>
+
+        </form>
+
+        <!-- SIGNUP -->
+
+        <form id="signupForm" class="auth-form hidden">
+
+            <div class="form-title">
+                <h2>Create your account</h2>
+                <p>Your profile will be saved for future visits.</p>
+            </div>
+
+            <label>Full Name</label>
+            <input
+                id="signupName"
+                type="text"
+                placeholder="Your full name"
+                required
+            >
+
+            <label>Email</label>
+            <input
+                id="signupEmail"
+                type="email"
+                placeholder="you@example.com"
+                required
+            >
+
+            <label>Phone</label>
+            <input
+                id="signupPhone"
+                type="tel"
+                placeholder="+91 XXXXX XXXXX"
+            >
+
+            <label>Password</label>
+
+            <div class="password-field">
+                <input
+                    id="signupPassword"
+                    type="password"
+                    placeholder="Create password"
+                    required
+                >
+
+                <button type="button" class="password-toggle" data-target="signupPassword">
+                    Show
+                </button>
+            </div>
+
+            <label>Confirm Password</label>
+            <input
+                id="signupConfirm"
+                type="password"
+                placeholder="Confirm password"
+                required
+            >
+
+            <button class="primary-btn full-btn" type="submit">
+                Create Account
+            </button>
+
+            <p id="signupMessage" class="auth-message"></p>
+
+        </form>
+
+        <div class="auth-footer">
+            <span>Hashing-powered parking management</span>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="app hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">P</div>
+
+            <div class="brand-text">
+                <strong>ParkHash</strong>
+                <span>Parking OS</span>
+            </div>
+
+        </div>
+
+        <nav class="side-nav">
+
             <button class="nav-item active" data-section="dashboard">
-                <span>⌂</span>
-                Dashboard
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
             </button>
 
             <button class="nav-item" data-section="parking">
-                <span>▦</span>
-                Parking Area
+                <span class="nav-icon">▦</span>
+                <span>Parking Area</span>
             </button>
 
             <button class="nav-item" data-section="operations">
-                <span>⚙</span>
-                Operations
+                <span class="nav-icon">⚡</span>
+                <span>Operations</span>
             </button>
 
-            <button class="nav-item" data-section="activity">
-                <span>◷</span>
-                Activity
+            <button class="nav-item" data-section="history">
+                <span class="nav-icon">◷</span>
+                <span>History</span>
+            </button>
+
+            <button class="nav-item" data-section="profile">
+                <span class="nav-icon">◉</span>
+                <span>Profile</span>
+            </button>
+
+            <button class="nav-item" data-section="settings">
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
             </button>
 
             <button class="nav-item" data-section="project">
-                <span>◇</span>
-                Project
+                <span class="nav-icon">◇</span>
+                <span>Project</span>
             </button>
+
         </nav>
 
         <div class="sidebar-bottom">
-            <div class="algorithm-mini">
-                <span>HASH ENGINE</span>
-                <strong>h(k) = k mod 11</strong>
+
+            <div class="mini-profile" id="miniProfile">
+
+                <div class="avatar" id="sidebarAvatar">A</div>
+
+                <div class="mini-profile-info">
+                    <strong id="sidebarName">User</strong>
+                    <span id="sidebarEmail">user@email.com</span>
+                </div>
+
             </div>
 
-            <div class="college-badge">
-                <span>ACADEMIC PROJECT</span>
-                <strong>DSA • CSE / AIML</strong>
-            </div>
+            <button id="logoutBtn" class="logout-btn">
+                ⇥ Logout
+            </button>
+
         </div>
 
     </aside>
 
 
     <!-- MAIN -->
-    <main class="main">
 
-        <!-- HEADER -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
         <header class="topbar">
 
             <div>
+
                 <div class="breadcrumb">
-                    PARKING SYSTEM / <span>LIVE DASHBOARD</span>
+                    ParkHash <span>/</span> <span id="currentPageName">Dashboard</span>
                 </div>
 
-                <h2 id="page-title">Smart Parking Dashboard</h2>
+                <h1 id="pageTitle">Dashboard</h1>
+
             </div>
 
             <div class="top-actions">
 
-                <button class="btn secondary" id="loadDemoBtn">
+                <button id="loadDemoBtn" class="secondary-btn">
                     Load Demo
                 </button>
 
-                <button class="btn danger-outline" id="resetBtn">
+                <button id="resetAppBtn" class="danger-outline-btn">
                     Reset
                 </button>
 
@@ -104,71 +267,38 @@
         </header>
 
 
-        <!-- DASHBOARD -->
-        <section id="dashboard" class="page-section active">
+        <!-- ================= DASHBOARD ================= -->
 
-            <div class="hero">
+        <section id="dashboard" class="page-section active-section">
+
+            <div class="hero-card">
 
                 <div class="hero-content">
 
-                    <div class="eyebrow">
-                        <span></span>
-                        INTELLIGENT HASH-BASED PARKING
-                    </div>
+                    <span class="eyebrow">SMART PARKING • HASHING SYSTEM</span>
 
-                    <h1>
-                        Parking management,
-                        <span>reimagined.</span>
-                    </h1>
+                    <h2>Parking management,<br><span>reimagined.</span></h2>
 
                     <p>
-                        A professional smart parking simulation built around
-                        hashing, collision handling and efficient vehicle lookup.
+                        Manage vehicles, detect collisions, track parking time
+                        and maintain complete parking records from one place.
                     </p>
 
-                    <div class="hero-buttons">
-                        <button class="hero-btn" onclick="scrollToSection('operations')">
-                            Start Operation →
-                        </button>
-
-                        <button class="hero-link" onclick="scrollToSection('project')">
-                            Explore Algorithm
-                        </button>
+                    <div class="formula-box">
+                        <span>HASH FUNCTION</span>
+                        <strong>h(k) = k mod 11</strong>
                     </div>
 
                 </div>
 
                 <div class="hero-visual">
 
-                    <div class="orb orb-one"></div>
-                    <div class="orb orb-two"></div>
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
 
-                    <div class="hash-card">
-
-                        <div class="hash-card-top">
-                            <span>HASH FUNCTION</span>
-                            <span class="live-badge">LIVE</span>
-                        </div>
-
-                        <div class="hash-formula">
-                            h(k) = k <span>mod</span> 11
-                        </div>
-
-                        <div class="hash-example">
-                            <span>1021</span>
-                            <span>→</span>
-                            <strong>9</strong>
-                        </div>
-
-                        <div class="hash-line">
-                            <span></span>
-                        </div>
-
-                        <div class="hash-footer">
-                            <span>Input Key</span>
-                            <span>Parking Slot</span>
-                        </div>
-
+                    <div class="hero-core">
+                        <span>11</span>
+                        <small>SLOTS</small>
                     </div>
 
                 </div>
@@ -176,7 +306,8 @@
             </div>
 
 
-            <!-- STAT CARDS -->
+            <!-- STATS -->
+
             <div class="stats-grid">
 
                 <div class="stat-card">
@@ -184,16 +315,14 @@
                     <div>
                         <span>Total Slots</span>
                         <strong id="totalSlots">11</strong>
-                        <small>Parking capacity</small>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon purple">🚗</div>
+                    <div class="stat-icon purple">●</div>
                     <div>
                         <span>Occupied</span>
                         <strong id="occupiedSlots">0</strong>
-                        <small id="occupancyText">0% occupancy</small>
                     </div>
                 </div>
 
@@ -202,140 +331,96 @@
                     <div>
                         <span>Available</span>
                         <strong id="availableSlots">11</strong>
-                        <small>Ready to park</small>
                     </div>
                 </div>
 
-                <div class="stat-card technique-card">
-                    <div class="stat-icon orange">⌁</div>
+                <div class="stat-card">
+                    <div class="stat-icon cyan">⌁</div>
                     <div>
                         <span>Technique</span>
                         <strong id="techniqueStat">Linear</strong>
-                        <small>Collision handling</small>
                     </div>
                 </div>
 
             </div>
 
 
-            <!-- MAIN GRID -->
+            <!-- DASHBOARD GRID -->
+
             <div class="dashboard-grid">
 
-                <!-- PARKING -->
-                <div class="panel parking-panel">
+                <div class="panel parking-preview">
 
                     <div class="panel-header">
-
                         <div>
-                            <span class="panel-label">LIVE VIEW</span>
-                            <h3>Parking Area</h3>
+                            <span class="section-label">LIVE STATUS</span>
+                            <h2>Parking Area</h2>
                         </div>
 
-                        <div class="availability">
-                            <span class="green-dot"></span>
-                            <span id="availabilityText">11 slots available</span>
-                        </div>
-
+                        <button class="text-btn" data-go="parking">
+                            View full area →
+                        </button>
                     </div>
 
-                    <div class="parking-grid" id="dashboardParkingGrid"></div>
+                    <div id="dashboardParkingGrid" class="parking-grid"></div>
 
                     <div class="legend">
-                        <div>
-                            <span class="legend-box available"></span>
+
+                        <span>
+                            <i class="legend-dot available"></i>
                             Available
-                        </div>
+                        </span>
 
-                        <div>
-                            <span class="legend-box occupied"></span>
+                        <span>
+                            <i class="legend-dot occupied"></i>
                             Occupied
-                        </div>
+                        </span>
 
-                        <div>
-                            <span class="legend-box highlighted"></span>
-                            Search Result
-                        </div>
+                        <span>
+                            <i class="legend-dot searched"></i>
+                            Selected
+                        </span>
+
                     </div>
 
                 </div>
 
 
-                <!-- QUICK OPERATION -->
-                <div class="panel operation-panel">
+                <div class="panel quick-panel">
 
                     <div class="panel-header">
                         <div>
-                            <span class="panel-label">CONTROL CENTER</span>
-                            <h3>Quick Operation</h3>
+                            <span class="section-label">QUICK ACTION</span>
+                            <h2>Park Vehicle</h2>
                         </div>
                     </div>
 
-                    <label>Vehicle Registration</label>
+                    <form id="quickParkForm">
 
-                    <div class="input-wrap">
-                        <span>🚘</span>
+                        <label>Vehicle Registration</label>
+
                         <input
-                            type="text"
                             id="quickVehicle"
+                            type="text"
                             placeholder="KA01AB1021"
-                            autocomplete="off"
+                            required
                         >
-                    </div>
 
-                    <button class="primary-btn" id="quickParkBtn">
-                        Park Vehicle
-                        <span>→</span>
-                    </button>
+                        <button class="primary-btn full-btn">
+                            Park Vehicle →
+                        </button>
+
+                    </form>
 
                     <div class="quick-actions">
 
-                        <button id="quickSearchBtn">
-                            <span>⌕</span>
+                        <button class="secondary-btn" data-go="operations">
                             Search Vehicle
                         </button>
 
-                        <button id="quickRemoveBtn">
-                            <span>−</span>
-                            Remove Vehicle
+                        <button class="secondary-btn" data-go="history">
+                            View History
                         </button>
-
-                    </div>
-
-
-                    <!-- SEARCH RESULT -->
-                    <div id="searchResult" class="search-result hidden">
-
-                        <div class="result-title">
-                            <span class="result-icon">✓</span>
-                            <div>
-                                <small>SEARCH RESULT</small>
-                                <strong id="resultStatus">Vehicle Found</strong>
-                            </div>
-                        </div>
-
-                        <div class="result-details">
-
-                            <div>
-                                <span>Vehicle</span>
-                                <strong id="resultVehicle">—</strong>
-                            </div>
-
-                            <div>
-                                <span>Parking Slot</span>
-                                <strong id="resultSlot">—</strong>
-                            </div>
-
-                            <div>
-                                <span>Probes</span>
-                                <strong id="resultProbes">—</strong>
-                            </div>
-
-                            <div>
-                                <span>Technique</span>
-                                <strong id="resultTechnique">—</strong>
-                            </div>
-
-                        </div>
 
                     </div>
 
@@ -345,60 +430,40 @@
 
 
             <!-- TECHNIQUE -->
+
             <div class="panel technique-panel">
 
-                <div class="technique-heading">
+                <div class="panel-header">
+
                     <div>
-                        <span class="panel-label">ALGORITHM ENGINE</span>
-                        <h3>Hashing Technique</h3>
+                        <span class="section-label">HASHING ENGINE</span>
+                        <h2>Collision Handling</h2>
                     </div>
 
-                    <div class="formula-mini">
-                        h(k) = k mod 11
-                    </div>
+                    <select id="techniqueSelect" class="select-control">
+                        <option value="linear">Linear Probing</option>
+                        <option value="quadratic">Quadratic Probing</option>
+                        <option value="double">Double Hashing</option>
+                        <option value="chain">Separate Chaining</option>
+                        <option value="rehash">Rehashing</option>
+                    </select>
+
                 </div>
 
-                <div class="technique-options">
+                <div class="technique-info">
 
-                    <button class="technique-option active" data-technique="linear">
-                        <span>01</span>
-                        <div>
-                            <strong>Linear Probing</strong>
-                            <small>Sequential collision resolution</small>
-                        </div>
-                    </button>
+                    <div class="technique-main">
+                        <strong id="techniqueName">Linear Probing</strong>
 
-                    <button class="technique-option" data-technique="quadratic">
-                        <span>02</span>
-                        <div>
-                            <strong>Quadratic Probing</strong>
-                            <small>Quadratic displacement</small>
-                        </div>
-                    </button>
+                        <p id="techniqueDescription">
+                            Resolves collisions by checking the next available slot sequentially.
+                        </p>
+                    </div>
 
-                    <button class="technique-option" data-technique="double">
-                        <span>03</span>
-                        <div>
-                            <strong>Double Hashing</strong>
-                            <small>Two hash functions</small>
-                        </div>
-                    </button>
-
-                    <button class="technique-option" data-technique="chaining">
-                        <span>04</span>
-                        <div>
-                            <strong>Separate Chaining</strong>
-                            <small>Linked collision buckets</small>
-                        </div>
-                    </button>
-
-                    <button class="technique-option" data-technique="rehashing">
-                        <span>05</span>
-                        <div>
-                            <strong>Rehashing</strong>
-                            <small>Expanded hash table</small>
-                        </div>
-                    </button>
+                    <div class="formula-small">
+                        <span>FORMULA</span>
+                        <strong id="formulaText">h(k) = k mod 11</strong>
+                    </div>
 
                 </div>
 
@@ -407,42 +472,45 @@
         </section>
 
 
-        <!-- PARKING AREA -->
+        <!-- ================= PARKING ================= -->
+
         <section id="parking" class="page-section">
 
-            <div class="section-heading">
+            <div class="page-intro">
+
                 <div>
-                    <span class="panel-label">REAL-TIME MONITOR</span>
-                    <h1>Parking Area</h1>
-                    <p>Monitor every parking slot in the system.</p>
+                    <span class="section-label">LIVE PARKING</span>
+                    <h2>Parking Area</h2>
+                    <p>Monitor every slot in real time.</p>
                 </div>
 
-                <div class="large-status">
-                    <span class="green-dot"></span>
-                    System operational
+                <div class="capacity-badge">
+                    <span id="parkingCapacity">0 / 11</span>
+                    occupied
                 </div>
+
             </div>
 
-            <div class="parking-large-panel">
+            <div class="panel">
 
-                <div class="parking-large-grid" id="largeParkingGrid"></div>
+                <div id="mainParkingGrid" class="parking-grid large-grid"></div>
 
-                <div class="parking-summary">
+                <div class="legend">
 
-                    <div>
-                        <span>Total Capacity</span>
-                        <strong>11</strong>
-                    </div>
+                    <span>
+                        <i class="legend-dot available"></i>
+                        Available
+                    </span>
 
-                    <div>
-                        <span>Occupied</span>
-                        <strong id="largeOccupied">0</strong>
-                    </div>
+                    <span>
+                        <i class="legend-dot occupied"></i>
+                        Occupied
+                    </span>
 
-                    <div>
-                        <span>Available</span>
-                        <strong id="largeAvailable">11</strong>
-                    </div>
+                    <span>
+                        <i class="legend-dot searched"></i>
+                        Search result
+                    </span>
 
                 </div>
 
@@ -451,96 +519,524 @@
         </section>
 
 
-        <!-- OPERATIONS -->
+        <!-- ================= OPERATIONS ================= -->
+
         <section id="operations" class="page-section">
 
-            <div class="section-heading">
-                <div>
-                    <span class="panel-label">SYSTEM CONTROL</span>
-                    <h1>Operations</h1>
-                    <p>Manage vehicles and test hashing operations.</p>
-                </div>
-            </div>
+            <div class="page-intro">
 
+                <div>
+                    <span class="section-label">CONTROL CENTER</span>
+                    <h2>Operations</h2>
+                    <p>Park, search and remove vehicles.</p>
+                </div>
+
+            </div>
 
             <div class="operations-grid">
 
-                <div class="operation-card">
+                <!-- PARK -->
+
+                <div class="panel operation-card">
 
                     <div class="operation-number">01</div>
 
-                    <h3>Park Vehicle</h3>
+                    <span class="section-label">INSERT</span>
+                    <h2>Park Vehicle</h2>
 
                     <p>
-                        Insert a vehicle into the parking table using the
-                        selected collision-resolution technique.
+                        Add a vehicle using the selected hashing technique.
                     </p>
 
-                    <div class="input-wrap">
-                        <span>🚘</span>
-                        <input
-                            type="text"
-                            id="parkVehicle"
-                            placeholder="Enter registration number"
-                        >
-                    </div>
+                    <form id="parkForm">
 
-                    <button class="primary-btn" id="parkBtn">
-                        Park Vehicle →
-                    </button>
+                        <label>Registration Number</label>
+
+                        <input
+                            id="parkVehicle"
+                            type="text"
+                            placeholder="KA01AB1021"
+                            required
+                        >
+
+                        <button class="primary-btn full-btn">
+                            Park Vehicle
+                        </button>
+
+                    </form>
 
                 </div>
 
 
-                <div class="operation-card">
+                <!-- SEARCH -->
+
+                <div class="panel operation-card">
 
                     <div class="operation-number">02</div>
 
-                    <h3>Search Vehicle</h3>
+                    <span class="section-label">SEARCH</span>
+                    <h2>Find Vehicle</h2>
 
                     <p>
-                        Locate a vehicle and display its parking slot,
-                        number of probes and technique used.
+                        Locate the exact slot and view parking details.
                     </p>
 
-                    <div class="input-wrap">
-                        <span>⌕</span>
-                        <input
-                            type="text"
-                            id="searchVehicle"
-                            placeholder="Enter registration number"
-                        >
-                    </div>
+                    <form id="searchForm">
 
-                    <button class="primary-btn" id="searchBtn">
-                        Search Vehicle →
-                    </button>
+                        <label>Registration Number</label>
+
+                        <input
+                            id="searchVehicle"
+                            type="text"
+                            placeholder="KA01AB1021"
+                            required
+                        >
+
+                        <button class="secondary-btn full-btn">
+                            Search Vehicle
+                        </button>
+
+                    </form>
 
                 </div>
 
 
-                <div class="operation-card">
+                <!-- REMOVE -->
+
+                <div class="panel operation-card">
 
                     <div class="operation-number">03</div>
 
-                    <h3>Remove Vehicle</h3>
+                    <span class="section-label">EXIT</span>
+                    <h2>Remove Vehicle</h2>
 
                     <p>
-                        Remove a vehicle from the parking table and
-                        release its assigned slot.
+                        Record exit time and calculate parking duration.
                     </p>
 
-                    <div class="input-wrap">
-                        <span>−</span>
+                    <form id="removeForm">
+
+                        <label>Registration Number</label>
+
                         <input
-                            type="text"
                             id="removeVehicle"
-                            placeholder="Enter registration number"
+                            type="text"
+                            placeholder="KA01AB1021"
+                            required
                         >
+
+                        <button class="danger-btn full-btn">
+                            Vehicle Exit
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div id="searchResult" class="search-result hidden">
+
+                <div class="result-icon">✓</div>
+
+                <div class="result-content">
+
+                    <span>SEARCH RESULT</span>
+
+                    <h2 id="resultVehicle">KA01AB1021</h2>
+
+                    <div class="result-details">
+
+                        <div>
+                            <small>Slot</small>
+                            <strong id="resultSlot">9</strong>
+                        </div>
+
+                        <div>
+                            <small>Probes</small>
+                            <strong id="resultProbes">1</strong>
+                        </div>
+
+                        <div>
+                            <small>Entry Time</small>
+                            <strong id="resultEntry">10:30 AM</strong>
+                        </div>
+
+                        <div>
+                            <small>Technique</small>
+                            <strong id="resultTechnique">Linear</strong>
+                        </div>
+
                     </div>
 
-                    <button class="danger-btn" id="removeBtn">
-                        Remove Vehicle →
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HISTORY ================= -->
+
+        <section id="history" class="page-section">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="section-label">PARKING RECORDS</span>
+                    <h2>History</h2>
+                    <p>Every vehicle entry and exit is stored here.</p>
+                </div>
+
+                <div class="history-actions">
+
+                    <button id="downloadCsvBtn" class="primary-btn">
+                        ↓ Download CSV
+                    </button>
+
+                    <button id="resetHistoryBtn" class="danger-outline-btn">
+                        Reset History
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="history-stats">
+
+                <div class="history-stat">
+                    <span>Total Sessions</span>
+                    <strong id="historyTotal">0</strong>
+                </div>
+
+                <div class="history-stat">
+                    <span>Currently Parked</span>
+                    <strong id="historyActive">0</strong>
+                </div>
+
+                <div class="history-stat">
+                    <span>Completed</span>
+                    <strong id="historyCompleted">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="panel history-panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>#</th>
+                                <th>Vehicle</th>
+                                <th>Slot</th>
+                                <th>Entry Time</th>
+                                <th>Exit Time</th>
+                                <th>Duration</th>
+                                <th>Technique</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="historyTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div id="emptyHistory" class="empty-state">
+
+                    <div class="empty-icon">◷</div>
+
+                    <h3>No parking history yet</h3>
+
+                    <p>
+                        Vehicle entry and exit records will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROFILE ================= -->
+
+        <section id="profile" class="page-section">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="section-label">ACCOUNT</span>
+                    <h2>Profile</h2>
+                    <p>Manage your ParkHash account.</p>
+                </div>
+
+            </div>
+
+
+            <div class="profile-grid">
+
+                <div class="panel profile-card">
+
+                    <div class="profile-cover"></div>
+
+                    <div class="profile-main">
+
+                        <div class="large-avatar" id="profileAvatar">
+                            A
+                        </div>
+
+                        <h2 id="profileName">User Name</h2>
+
+                        <p id="profileEmail">user@email.com</p>
+
+                        <span class="member-badge">
+                            ParkHash Member
+                        </span>
+
+                    </div>
+
+                    <div class="profile-stats">
+
+                        <div>
+                            <strong id="profileSessions">0</strong>
+                            <span>Sessions</span>
+                        </div>
+
+                        <div>
+                            <strong id="profileCompleted">0</strong>
+                            <span>Completed</span>
+                        </div>
+
+                        <div>
+                            <strong id="profileActive">0</strong>
+                            <span>Active</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="section-label">PERSONAL DETAILS</span>
+                            <h2>Edit Profile</h2>
+                        </div>
+
+                    </div>
+
+                    <form id="profileForm" class="profile-form">
+
+                        <label>Full Name</label>
+
+                        <input id="profileNameInput" type="text" required>
+
+                        <label>Email</label>
+
+                        <input id="profileEmailInput" type="email" disabled>
+
+                        <label>Phone</label>
+
+                        <input id="profilePhoneInput" type="tel">
+
+                        <button class="primary-btn">
+                            Save Profile
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SETTINGS ================= -->
+
+        <section id="settings" class="page-section">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="section-label">PREFERENCES</span>
+                    <h2>Settings</h2>
+                    <p>Customize your ParkHash experience.</p>
+                </div>
+
+            </div>
+
+
+            <div class="settings-grid">
+
+                <div class="panel settings-panel">
+
+                    <div class="setting-heading">
+                        <div class="setting-icon">◐</div>
+
+                        <div>
+                            <h3>Appearance</h3>
+                            <p>Choose how ParkHash looks.</p>
+                        </div>
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div>
+                            <strong>Theme</strong>
+                            <span>Change the visual theme.</span>
+                        </div>
+
+                        <select id="themeSelect" class="select-control">
+                            <option value="aurora">Aurora Dark</option>
+                            <option value="midnight">Midnight Blue</option>
+                            <option value="light">Light</option>
+                        </select>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div>
+                            <strong>Compact Mode</strong>
+                            <span>Reduce spacing inside the dashboard.</span>
+                        </div>
+
+                        <label class="switch">
+                            <input id="compactToggle" type="checkbox">
+                            <span></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel settings-panel">
+
+                    <div class="setting-heading">
+
+                        <div class="setting-icon">⚙</div>
+
+                        <div>
+                            <h3>Parking Preferences</h3>
+                            <p>Configure default system behaviour.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div>
+                            <strong>Default Technique</strong>
+                            <span>Technique used for new sessions.</span>
+                        </div>
+
+                        <select id="defaultTechnique" class="select-control">
+
+                            <option value="linear">Linear Probing</option>
+                            <option value="quadratic">Quadratic Probing</option>
+                            <option value="double">Double Hashing</option>
+                            <option value="chain">Separate Chaining</option>
+                            <option value="rehash">Rehashing</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div>
+                            <strong>24 Hour Time</strong>
+                            <span>Use 24-hour time in records.</span>
+                        </div>
+
+                        <label class="switch">
+                            <input id="timeToggle" type="checkbox">
+                            <span></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel settings-panel">
+
+                    <div class="setting-heading">
+
+                        <div class="setting-icon">♢</div>
+
+                        <div>
+                            <h3>Notifications</h3>
+                            <p>Control dashboard notifications.</p>
+                        </div>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div>
+                            <strong>Action Notifications</strong>
+                            <span>Show messages after parking operations.</span>
+                        </div>
+
+                        <label class="switch">
+                            <input id="notificationToggle" type="checkbox" checked>
+                            <span></span>
+                        </label>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div>
+                            <strong>Auto Save</strong>
+                            <span>Automatically save parking information.</span>
+                        </div>
+
+                        <label class="switch">
+                            <input id="autoSaveToggle" type="checkbox" checked>
+                            <span></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel danger-panel">
+
+                    <div>
+
+                        <span class="section-label">DANGER ZONE</span>
+
+                        <h3>Reset Application Data</h3>
+
+                        <p>
+                            Removes parking data and history from this browser.
+                            Your account will remain available.
+                        </p>
+
+                    </div>
+
+                    <button id="settingsResetBtn" class="danger-btn">
+                        Reset Parking Data
                     </button>
 
                 </div>
@@ -550,180 +1046,69 @@
         </section>
 
 
-        <!-- ACTIVITY -->
-        <section id="activity" class="page-section">
+        <!-- ================= PROJECT ================= -->
 
-            <div class="section-heading">
-                <div>
-                    <span class="panel-label">SYSTEM LOG</span>
-                    <h1>Activity</h1>
-                    <p>Recent parking and hashing operations.</p>
-                </div>
-            </div>
-
-            <div class="activity-panel">
-
-                <div class="activity-header">
-                    <span>TIME</span>
-                    <span>OPERATION</span>
-                    <span>VEHICLE</span>
-                    <span>RESULT</span>
-                </div>
-
-                <div id="activityList"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PROJECT -->
         <section id="project" class="page-section">
 
-            <div class="project-hero">
+            <div class="page-intro">
 
                 <div>
-                    <span class="panel-label">DATA STRUCTURES PROJECT</span>
-
-                    <h1>
-                        Smart Parking<br>
-                        <span>using Hashing</span>
-                    </h1>
-
-                    <p>
-                        A web-based simulation demonstrating how hashing
-                        techniques can efficiently manage parking allocation,
-                        collision resolution and vehicle searching.
-                    </p>
+                    <span class="section-label">ACADEMIC PROJECT</span>
+                    <h2>About ParkHash</h2>
+                    <p>A smart parking system based on hashing and collision handling.</p>
                 </div>
 
-                <div class="project-code">
+            </div>
 
-                    <span>CORE FORMULA</span>
 
-                    <div>
-                        h(k) = k mod 11
-                    </div>
+            <div class="project-hero panel">
 
-                    <small>
-                        Example: 1021 mod 11 = 9
-                    </small>
+                <span class="section-label">PROJECT OBJECTIVE</span>
 
-                </div>
+                <h2>
+                    Demonstrating data structures through
+                    <span>real-world parking management.</span>
+                </h2>
+
+                <p>
+                    ParkHash uses hashing techniques to efficiently assign
+                    vehicles to parking slots while demonstrating collision
+                    resolution strategies.
+                </p>
 
             </div>
 
 
             <div class="project-grid">
 
-                <div class="info-card">
-
-                    <span class="info-number">01</span>
-
-                    <h3>Objective</h3>
-
-                    <p>
-                        Design a smart parking system where vehicle
-                        registration numbers are converted into hash keys
-                        and mapped efficiently to parking slots.
-                    </p>
-
+                <div class="panel project-card">
+                    <span>01</span>
+                    <h3>Linear Probing</h3>
+                    <p>Checks consecutive slots when a collision occurs.</p>
                 </div>
 
-                <div class="info-card">
-
-                    <span class="info-number">02</span>
-
-                    <h3>Why Hashing?</h3>
-
-                    <p>
-                        Hashing provides fast average-case insertion,
-                        searching and deletion by directly mapping a
-                        vehicle key to a parking location.
-                    </p>
-
+                <div class="panel project-card">
+                    <span>02</span>
+                    <h3>Quadratic Probing</h3>
+                    <p>Uses quadratic jumps to find another available slot.</p>
                 </div>
 
-                <div class="info-card">
-
-                    <span class="info-number">03</span>
-
-                    <h3>Collision Handling</h3>
-
-                    <p>
-                        When multiple vehicles map to the same slot,
-                        collision-resolution algorithms find the next
-                        suitable position.
-                    </p>
-
+                <div class="panel project-card">
+                    <span>03</span>
+                    <h3>Double Hashing</h3>
+                    <p>Uses a second hash function for collision resolution.</p>
                 </div>
 
-            </div>
-
-
-            <div class="algorithms-section">
-
-                <span class="panel-label">IMPLEMENTED TECHNIQUES</span>
-
-                <h2>Five collision strategies</h2>
-
-                <div class="algorithm-list">
-
-                    <div>
-                        <span>01</span>
-                        <strong>Linear Probing</strong>
-                        <small>Check consecutive slots.</small>
-                    </div>
-
-                    <div>
-                        <span>02</span>
-                        <strong>Quadratic Probing</strong>
-                        <small>Use increasing quadratic offsets.</small>
-                    </div>
-
-                    <div>
-                        <span>03</span>
-                        <strong>Double Hashing</strong>
-                        <small>Use a second hash function.</small>
-                    </div>
-
-                    <div>
-                        <span>04</span>
-                        <strong>Separate Chaining</strong>
-                        <small>Store collisions in linked buckets.</small>
-                    </div>
-
-                    <div>
-                        <span>05</span>
-                        <strong>Rehashing</strong>
-                        <small>Expand the table and insert again.</small>
-                    </div>
-
+                <div class="panel project-card">
+                    <span>04</span>
+                    <h3>Separate Chaining</h3>
+                    <p>Stores multiple collided vehicles in a chain.</p>
                 </div>
 
-            </div>
-
-
-            <div class="project-footer">
-
-                <div>
-                    <span>PROJECT</span>
-                    <strong>ParkHash</strong>
-                </div>
-
-                <div>
-                    <span>DOMAIN</span>
-                    <strong>Data Structures & Algorithms</strong>
-                </div>
-
-                <div>
-                    <span>PLATFORM</span>
-                    <strong>Web Application</strong>
-                </div>
-
-                <div>
-                    <span>STATUS</span>
-                    <strong class="green-text">Completed</strong>
+                <div class="panel project-card">
+                    <span>05</span>
+                    <h3>Rehashing</h3>
+                    <p>Uses a larger table when more capacity is required.</p>
                 </div>
 
             </div>
@@ -735,9 +1120,42 @@
 </div>
 
 
+<!-- TOAST -->
+
 <div id="toast" class="toast">
-    <span class="toast-icon">✓</span>
-    <span id="toastMessage">Operation completed</span>
+    <div class="toast-dot"></div>
+    <span id="toastMessage">Success</span>
+</div>
+
+
+<!-- CONFIRM MODAL -->
+
+<div id="confirmModal" class="modal hidden">
+
+    <div class="modal-card">
+
+        <div class="modal-icon">!</div>
+
+        <h2 id="modalTitle">Are you sure?</h2>
+
+        <p id="modalMessage">
+            This action cannot be undone.
+        </p>
+
+        <div class="modal-actions">
+
+            <button id="modalCancel" class="secondary-btn">
+                Cancel
+            </button>
+
+            <button id="modalConfirm" class="danger-btn">
+                Confirm
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
 
