@@ -1,0 +1,18 @@
+{
+  "short_name": "ParkHash",
+  "name": "ParkHash Smart Parking Mobile",
+  "description": "Real-Time Smart Parking Operating System & IoT Gate Manager",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='128' fill='%235b8cff'/><path d='M180 120h100c50 0 90 35 90 85s-40 85-90 85h-45v102h-55V120zm55 48v74h45c22 0 40-14 40-37s-18-37-40-37h-45z' fill='white'/></svg>",
+      "type": "image/svg+xml",
+      "sizes": "512x512 192x192 128x128 64x64"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#070912",
+  "theme_color": "#070912",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity"]
+}

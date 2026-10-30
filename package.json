@@ -1,0 +1,21 @@
+{
+  "name": "smart-parking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "build": "node -e \"const fs=require('fs'); fs.mkdirSync('www',{recursive:true}); ['index.html','style.css','script.js','manifest.json','sw.js'].forEach(f=>{ if(fs.existsSync(f)) fs.copyFileSync(f,'www/'+f); }); console.log('Assets copied to www/');\"",
+    "cap:sync": "npm run build && npx cap sync android",
+    "build:apk": "powershell -ExecutionPolicy Bypass -File ./build-apk.ps1",
+    "open:android": "npx cap open android"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2"
+  }
+}
